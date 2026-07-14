@@ -46,6 +46,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdro
 /* ---------- Compact search strip ---------- */
 .search-strip{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;position:sticky;top:64px;z-index:30}
 .strip-inner{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.strip-summary{display:none}
 .strip-search{flex:1 1 520px;display:flex;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:999px;box-shadow:0 2px 10px rgba(14,34,51,.06);padding:4px;min-width:0}
 .strip-search .field{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;padding:4px 16px;border-right:1px solid var(--line);min-width:0}
 .strip-search .field:last-of-type{border-right:0}
@@ -201,6 +202,14 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdro
 .book-note{text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:9px}
 
 /* ---------- Responsive ---------- */
+footer{border-top:1px solid var(--line);padding:36px 0;background:var(--mist);margin-top:8px}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14.5px;color:var(--ink-soft)}
+.foot-links{display:flex;gap:24px}
+.foot-links a:hover{color:var(--blue)}
+.socials{display:flex;gap:8px}
+.soc{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:border-color .15s,color .15s,background .15s}
+.soc:hover{border-color:var(--blue);color:var(--blue);background:#eaf3fa}
+.soc svg{width:15px;height:15px}
 /* ---------- Refinements ---------- */
 .price,.sum-total b,.sum-info b,.slot,.tslot,.date-pill b,.cal-day,.time-hint{font-variant-numeric:tabular-nums}
 .btn,.strip-btn,.slot,.tslot,.date-pill,.mini-pill{transition:background .15s,color .15s,border-color .15s,transform .12s ease-out}
@@ -240,30 +249,52 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdro
   .nav-links{display:none}
 }
 @media (max-width:680px){
-  .wrap{padding:0 16px}
+  .wrap{padding-left:max(20px, env(safe-area-inset-left));padding-right:max(20px, env(safe-area-inset-right))}
   .nav{height:58px;gap:12px}
   .nav-right .quiet{display:none}
+  /* Collapsible search: summary pill by default, full form when .open */
   .search-strip{top:58px;padding:10px 0}
-  .strip-search{flex-direction:column;border-radius:20px;padding:8px}
-  .strip-search .field{border-right:0;border-bottom:1px solid var(--line);padding:9px 12px}
+  .strip-summary{display:flex;width:100%;align-items:center;gap:11px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:11px 18px;text-align:left;color:var(--ink-soft);box-shadow:0 2px 10px rgba(14,34,51,.06)}
+  .strip-summary .ss-text{flex:1;min-width:0}
+  .strip-summary b{display:block;font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .strip-summary small{display:block;font-size:12px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ss-edit{flex:none;color:var(--blue);font-weight:700;font-size:13px}
+  .search-strip:not(.open) .strip-search{display:none}
+  .search-strip:not(.open) .strip-pills{display:none}
+  .search-strip.open .strip-summary{border-color:var(--blue);background:#eaf3fa}
+  .strip-search{flex-direction:column;border-radius:20px;padding:12px;margin-top:10px;flex-basis:100%}
+  .strip-search .field{border-right:0;border-bottom:1px solid var(--line);padding:11px 14px}
   .strip-search .field:last-of-type{border-bottom:0}
-  .strip-btn{width:100%;justify-content:center;margin-top:6px}
-  .strip-pills{width:100%;justify-content:flex-start;flex-wrap:wrap}
+  .strip-btn{width:100%;justify-content:center;margin-top:8px;padding:13px 20px}
+  .strip-pills{width:100%;justify-content:flex-start;flex-wrap:wrap;margin-top:8px;gap:8px}
+  /* Results */
+  .results-head{padding:22px 0 2px}
+  .results{padding:16px 0 48px;gap:16px}
   .rcard{grid-template-columns:1fr}
   .rcard-media{min-height:190px;aspect-ratio:16/9}
-  .rcard-body{padding:16px 18px}
+  .rcard-body{padding:18px 20px 20px}
   .rcard-top{flex-direction:column;gap:6px}
   .price{text-align:left}
   .price span{display:inline;margin-left:4px}
+  .rcard-actions .btn{flex:1}
+  .slots{gap:8px}
+  .tip{padding:13px 16px;font-size:14px}
+  /* Booking modal: bottom sheet with grab handle + sticky price bar */
+  .overlay{padding:28px 0 0;align-items:flex-end}
+  .modal{border-radius:20px 20px 0 0;min-height:calc(100vh - 28px)}
+  .modal-head{padding:20px 20px 14px;position:relative}
+  .modal-head::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:999px;background:var(--line)}
+  .modal-left,.modal-right{padding:20px}
   .time-grid{grid-template-columns:repeat(3,1fr)}
   .inline-fields{flex-direction:column}
-  .modal-head{padding:18px 20px 14px}
-  .modal-left,.modal-right{padding:18px 20px}
-  .summary{margin:4px -20px -18px;padding:16px 20px 20px}
-  .overlay{padding:0}
-  .modal{border-radius:0;min-height:100vh}
-  .date-row{overflow-x:auto;padding-bottom:4px}
-  .date-pill{min-width:44px}
+  .modal-right{padding-bottom:0}
+  .summary{position:sticky;bottom:0;z-index:5;margin:4px -20px 0;padding:14px 20px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 24px rgba(14,34,51,.08);border-radius:0}
+  .date-row{overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+  .date-row::-webkit-scrollbar{display:none}
+  .date-pill{min-width:46px}
+  .empty{padding:38px 20px}
+  .foot{flex-direction:column;align-items:flex-start;gap:14px}
+  .foot-links{flex-wrap:wrap;gap:14px 20px}
 }
 @media (prefers-reduced-motion:reduce){.rcard,.rcard:hover,.btn,.slot,.tslot,.date-pill{transition:none;transform:none}.overlay[data-open="true"] .modal,.date-row.slide,.sum-total b.tick,.skel{animation:none}}
 </style>
@@ -294,7 +325,12 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdro
 <!-- ================= SEARCH STRIP ================= -->
 <div class="search-strip">
   <div class="wrap strip-inner">
-    <div class="strip-search">
+    <button type="button" class="strip-summary" id="strip-summary" onclick="toggleStrip()" aria-expanded="false" aria-controls="strip-form">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+      <span class="ss-text" id="ss-text"><b>Prince Edward County, VA</b><small>Softball · Jul 13, 2026</small></span>
+      <span class="ss-edit">Edit</span>
+    </button>
+    <div class="strip-search" id="strip-form">
       <div class="field">
         <label for="s-loc">Where</label>
         <input id="s-loc" type="text" value="Prince Edward County, VA">
@@ -443,6 +479,24 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdro
 
   </div>
 </main>
+
+<footer>
+  <div class="wrap foot">
+    <span style="display:flex;align-items:center;gap:10px"><img src="https://res.cloudinary.com/dpj2i1xui/image/upload/v1771271599/Asset_1favicon-pp_reordh.svg" alt="" style="height:22px;width:auto"> © PracticePlan 2026</span>
+    <div class="foot-links">
+      <a href="#">Help center</a>
+      <a href="#">Terms of service</a>
+      <a href="#">Privacy policy</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="socials" aria-label="PracticePlan on social media">
+      <a class="soc" href="https://www.linkedin.com/company/practiceplan" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S.02 4.88.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.31h4.56V23H.22zM8.34 8.31h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 6.99V23h-4.56v-7.19c0-1.71-.03-3.92-2.39-3.92-2.39 0-2.76 1.87-2.76 3.8V23H8.34z"/></svg></a>
+      <a class="soc" href="https://www.facebook.com/practiceplan.io/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.92 3.79-3.92 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg></a>
+      <a class="soc" href="https://www.instagram.com/practiceplan.io" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+      <a class="soc" href="https://x.com/practiceplan_io" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.23l-4.88-6.38L6.5 22H3.37l7.24-8.28L1.2 2h6.39l4.41 5.83L18.9 2zm-1.09 18.14h1.73L6.66 3.77H4.8l13.01 16.37z"/></svg></a>
+    </div>
+  </div>
+</footer>
 
 <!-- ================= BOOKING MODAL ================= -->
 <div class="overlay" id="overlay" data-open="false" onclick="if(event.target===this)closeModal()">
@@ -740,7 +794,25 @@ function updateSummary(){
 }
 
 renderWeek();
+function toggleStrip(){
+  var st = document.querySelector(".search-strip");
+  var open = st.classList.toggle("open");
+  document.getElementById("strip-summary").setAttribute("aria-expanded", String(open));
+}
+function updateStripSummary(){
+  var loc = document.getElementById("s-loc").value || "Anywhere";
+  var act = document.getElementById("s-act").value;
+  var when = document.getElementById("s-when").value;
+  var whenTxt = "";
+  if (when){ var p = when.split("-"); var mn = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; whenTxt = mn[parseInt(p[1],10)-1] + " " + parseInt(p[2],10) + ", " + p[0]; }
+  document.getElementById("ss-text").innerHTML = "<b>"+loc+"</b><small>"+act+(whenTxt?" \u00b7 "+whenTxt:"")+"</small>";
+}
 function runSearch(){
+  if (window.innerWidth <= 680){
+    document.querySelector(".search-strip").classList.remove("open");
+    document.getElementById("strip-summary").setAttribute("aria-expanded","false");
+    updateStripSummary();
+  }
   var skel = document.getElementById("skeletons");
   var content = document.getElementById("results-content");
   var empty = document.getElementById("empty-state");
