@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Softball fields in Farmville, VA — PracticePlan</title>
+<link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dpj2i1xui/image/upload/v1771271599/Asset_1favicon-pp_reordh.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0076bb;--blue-dark:#04537f;--navy:#0e2233;--green:#00a84f;--green-dark:#008a41;
+  --mist:#f1f6fa;--line:#dbe6ee;--ink:#16283a;--ink-soft:#5a6c7c;--white:#fff;
+  --radius:14px;--shadow:0 10px 30px rgba(14,34,51,.10);
+  --display:'Barlow Condensed',Arial,sans-serif;--body:'Barlow',-apple-system,'Segoe UI',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--body);color:var(--ink);background:#fafcfe;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--body);cursor:pointer}
+select,input{font-family:var(--body)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+/* ---------- Header (same as homepage) ---------- */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:28px;height:64px}
+.logo img{height:28px;width:auto}
+.nav-links{display:flex;gap:8px;margin-left:20px;font-weight:600;font-size:14.5px}
+.nav-links a{padding:8px 15px;border-radius:999px;color:var(--ink-soft);transition:background .15s,color .15s}
+.nav-links a:hover{background:var(--mist);color:var(--blue-dark)}
+.nav-links a.active{background:#eaf3fa;color:var(--blue-dark)}
+.nav-spacer{flex:1}
+.nav-right{display:flex;align-items:center;gap:8px;font-size:14.5px}
+.nav-div{width:1px;height:22px;background:var(--line);margin:0 8px}
+.nav-right .quiet{font-weight:600;color:var(--ink-soft);padding:8px 13px;border-radius:999px;transition:background .15s,color .15s}
+.nav-right .quiet:hover{background:var(--mist);color:var(--blue-dark)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;font-weight:600;font-size:15px;padding:10px 20px;transition:background .15s}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:var(--green-dark)}
+.btn-ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ---------- Compact search strip ---------- */
+.search-strip{background:#fff;border-bottom:1px solid var(--line);padding:14px 0;position:sticky;top:64px;z-index:30}
+.strip-inner{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.strip-search{flex:1 1 520px;display:flex;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:999px;box-shadow:0 2px 10px rgba(14,34,51,.06);padding:4px;min-width:0}
+.strip-search .field{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;padding:4px 16px;border-right:1px solid var(--line);min-width:0}
+.strip-search .field:last-of-type{border-right:0}
+.strip-search label{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-dark)}
+.strip-search input,.strip-search select{border:0;background:transparent;font-size:14px;color:var(--ink);width:100%;padding:1px 0}
+.strip-search input:focus,.strip-search select:focus{outline:none}
+.strip-btn{flex:none;align-self:center;background:var(--green);color:#fff;border:0;border-radius:999px;font-weight:700;font-size:14px;padding:11px 22px;display:flex;align-items:center;gap:6px}
+.strip-btn:hover{background:var(--green-dark)}
+.strip-pills{display:flex;gap:6px;align-items:center}
+.mini-pill{position:relative;display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:13.5px;font-weight:500;color:var(--ink-soft);cursor:pointer;white-space:nowrap}
+.mini-pill:hover{border-color:var(--blue);color:var(--blue)}
+.mini-pill b{color:var(--ink);font-weight:600}
+.mini-pill select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.mini-pill.has-value{border-color:var(--blue);background:#eaf3fa}
+.mini-pill.has-value b{color:var(--blue-dark)}
+
+/* ---------- Results ---------- */
+.results-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 0 4px;flex-wrap:wrap}
+.results-head h1{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.4vw,32px);text-transform:uppercase;line-height:1.05}
+.results-sub{margin-top:2px;font-size:14.5px;color:var(--ink-soft)}
+.view-toggle{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px}
+.view-toggle button{border:0;background:transparent;border-radius:999px;padding:8px 18px;font-weight:600;font-size:13.5px;color:var(--ink-soft);display:flex;align-items:center;gap:6px}
+.view-toggle button[aria-selected="true"]{background:var(--blue);color:#fff}
+
+/* Result card */
+.results{padding:18px 0 60px;display:grid;gap:18px}
+.rcard{display:grid;grid-template-columns:300px 1fr;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .2s}
+.rcard:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.rcard-media{position:relative;min-height:210px}
+.rcard-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rcard-badge{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.94);border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.05em;padding:5px 11px;color:var(--blue-dark);text-transform:uppercase}
+.rcard-body{padding:20px 24px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.rcard-top{display:flex;align-items:start;justify-content:space-between;gap:14px}
+.rcard h2{font-size:20px;font-weight:700;line-height:1.2}
+.rcard .school{font-size:14.5px;color:var(--blue);font-weight:600;margin-top:1px}
+.rcard .meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-soft);margin-top:3px}
+.rcard .meta .dot::before{content:"·";margin:0 2px}
+.new-tag{background:var(--mist);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;color:var(--ink-soft)}
+.price{text-align:right;flex:none}
+.price b{font-size:19px;font-weight:700}
+.price span{display:block;font-size:12.5px;color:var(--ink-soft)}
+.avail{margin-top:auto;padding-top:14px}
+.avail-label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.avail-label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
+.slots{display:flex;gap:8px;flex-wrap:wrap}
+.slot{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:7px 13px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .15s,background .15s}
+.slot:hover{border-color:var(--blue);background:#eaf3fa}
+.slot-more{border-style:dashed;color:var(--ink-soft);font-weight:500}
+.rcard-actions{display:flex;gap:10px;margin-top:14px}
+
+/* Alternatives */
+.alt-head{display:flex;align-items:center;gap:12px;margin:26px 0 4px}
+.alt-head h2{font-family:var(--display);font-weight:700;font-size:21px;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.alt-head .rule{flex:1;height:1px;background:var(--line)}
+.alt-note{font-size:14px;color:var(--ink-soft);margin-bottom:14px}
+.rcard.alt .rcard-media{filter:saturate(.9)}
+
+/* Tip banner */
+.tip{display:flex;align-items:center;gap:12px;background:#eaf3fa;border:1px solid #c5dcec;border-radius:14px;padding:13px 18px;font-size:14.5px;margin-top:8px}
+.tip svg{flex:none;color:var(--blue)}
+.tip a{color:var(--blue);font-weight:600}
+
+/* ---------- Booking modal ---------- */
+.overlay{position:fixed;inset:0;background:rgba(14,34,51,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:32px 16px;overflow-y:auto}
+.overlay[data-open="true"]{display:flex}
+.modal{background:#fff;border-radius:20px;max-width:980px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(14,34,51,.35);margin:auto}
+.modal-head{display:flex;align-items:start;justify-content:space-between;gap:16px;padding:22px 28px 18px;border-bottom:1px solid var(--line)}
+.modal-head h2{font-family:var(--display);font-weight:700;font-size:27px;text-transform:uppercase;line-height:1.05}
+.modal-head .sub{font-size:14.5px;color:var(--ink-soft);margin-top:2px}
+.modal-head .sub a{color:var(--blue);font-weight:600}
+.approval{display:inline-flex;align-items:center;gap:6px;background:#fff7e8;border:1px solid #f0dcae;color:#8a6410;border-radius:999px;font-size:12px;font-weight:700;padding:4px 12px;margin-top:8px;text-transform:uppercase;letter-spacing:.04em}
+.close{flex:none;border:0;background:var(--mist);width:38px;height:38px;border-radius:50%;font-size:17px;color:var(--ink-soft);display:flex;align-items:center;justify-content:center}
+.close:hover{background:var(--line)}
+.modal-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:0}
+.modal-left{padding:24px 28px;border-right:1px solid var(--line)}
+.modal-right{padding:24px 28px;background:#fbfdff}
+
+/* Left column */
+.photo{border-radius:14px;overflow:hidden;aspect-ratio:16/10;position:relative;background:var(--mist)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.facts{margin-top:18px;display:grid;gap:11px}
+.fact{display:flex;gap:11px;align-items:start;font-size:14.5px}
+.fact svg{flex:none;color:var(--blue);margin-top:2px}
+.fact b{font-weight:600}
+.good-for{margin-top:18px}
+.good-for h4,.policies summary{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-dark)}
+.gf-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.gf-chip{background:var(--mist);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+.policies{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.policies summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
+.policies summary::after{content:"+";font-size:16px;color:var(--ink-soft)}
+.policies[open] summary::after{content:"–"}
+.policies ul{list-style:none;margin-top:12px;display:grid;gap:8px;font-size:13.5px;color:var(--ink-soft)}
+.policies li{display:flex;gap:8px}
+.policies li::before{content:"·";color:var(--blue);font-weight:700}
+
+/* Right column — stepped flow */
+.bstep{margin-bottom:22px}
+.bstep-label{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.bstep-num{flex:none;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--display);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.bstep-label h3{font-size:15px;font-weight:700}
+.bstep-label .opt{font-size:12.5px;color:var(--ink-soft);font-weight:500}
+.date-nav{display:flex;align-items:center;gap:6px;margin-bottom:9px}
+.dnav-month{font-size:14px;font-weight:700;margin-right:2px}
+.dnav-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft);font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s}
+.dnav-btn:hover:not(:disabled){border-color:var(--blue);color:var(--blue)}
+.dnav-btn:disabled{opacity:.35;cursor:default}
+.dnav-cal{margin-left:auto;display:inline-flex;gap:7px;align-items:center;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:600;color:var(--ink-soft);transition:border-color .15s,color .15s,background .15s}
+.dnav-cal:hover,.dnav-cal[aria-expanded="true"]{border-color:var(--blue);color:var(--blue-dark);background:#eaf3fa}
+.cal{margin-top:10px;border:1.5px solid var(--line);border-radius:14px;background:#fff;padding:14px;box-shadow:0 8px 24px rgba(14,34,51,.08)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-head b{font-size:14.5px;font-weight:700}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-dow{font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--ink-soft);text-align:center;text-transform:uppercase;padding:3px 0 6px}
+.cal-day{border:0;background:transparent;border-radius:10px;padding:8px 0;font-size:13.5px;font-weight:600;color:var(--ink);transition:background .12s,color .12s}
+.cal-day:hover:not(:disabled):not([data-selected="true"]){background:var(--mist);color:var(--blue-dark)}
+.cal-day[data-selected="true"]{background:var(--blue);color:#fff}
+.cal-day[data-today="true"]:not([data-selected="true"]){box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--blue-dark)}
+.cal-day:disabled{color:#c3cfd8;cursor:default}
+.cal-day.pad{visibility:hidden}
+.date-row{display:flex;gap:6px}
+.date-pill{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 2px;text-align:center;transition:border-color .15s,background .15s}
+.date-pill small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase}
+.date-pill b{font-size:16px;font-weight:700}
+.date-pill:hover:not(:disabled){border-color:var(--blue)}
+.date-pill:disabled{opacity:.4;cursor:default}
+.date-pill[data-selected="true"]{border-color:var(--blue);background:var(--blue);color:#fff}
+.date-pill[data-selected="true"] small{color:#cfe6f5}
+.inline-fields{display:flex;gap:10px;margin-top:12px}
+.ifield{flex:1;display:flex;flex-direction:column;gap:4px}
+.ifield label{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue-dark)}
+.ifield select,.ifield input{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;font-size:14px;color:var(--ink);background:#fff;width:100%}
+.ifield select:focus,.ifield input:focus{outline:none;border-color:var(--blue)}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tslot{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px 4px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .15s,background .15s}
+.tslot:hover:not([data-selected="true"]){border-color:var(--blue);background:#eaf3fa}
+.tslot[data-selected="true"]{border-color:var(--blue);background:var(--blue);color:#fff}
+.time-hint{font-size:12.5px;color:var(--ink-soft);margin-top:8px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.detail-grid .ifield.full{grid-column:1 / -1}
+
+/* Summary bar */
+.summary{border-top:1px solid var(--line);margin:4px -28px -24px;padding:18px 28px 22px;background:#fff;border-radius:0 0 20px 0}
+.sum-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.sum-info b{font-size:16.5px;font-weight:700;display:block}
+.sum-info span{font-size:13px;color:var(--ink-soft)}
+.sum-total{text-align:right}
+.sum-total b{font-size:22px;font-weight:700}
+.sum-total span{display:block;font-size:12px;color:var(--ink-soft)}
+.book-btn{width:100%;margin-top:14px;background:var(--green);color:#fff;border:0;border-radius:999px;font-weight:700;font-size:16px;padding:14px}
+.book-btn:disabled{background:var(--line);color:var(--ink-soft);cursor:not-allowed}
+.book-btn:not(:disabled):hover{background:var(--green-dark)}
+.book-note{text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:9px}
+
+/* ---------- Responsive ---------- */
+/* ---------- Refinements ---------- */
+.price,.sum-total b,.sum-info b,.slot,.tslot,.date-pill b,.cal-day,.time-hint{font-variant-numeric:tabular-nums}
+.btn,.strip-btn,.slot,.tslot,.date-pill,.mini-pill{transition:background .15s,color .15s,border-color .15s,transform .12s ease-out}
+.btn:active,.strip-btn:active,.slot:active,.tslot:active,.date-pill:active{transform:scale(.96)}
+.btn-green:hover,.strip-btn:hover{transform:translateY(-1px)}
+.overlay[data-open="true"] .modal{animation:modalIn .22s ease-out}
+@keyframes modalIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.date-row.slide{animation:rowSlide .18s ease-out}
+@keyframes rowSlide{from{opacity:.3;transform:translateX(8px)}to{opacity:1;transform:none}}
+.sum-total b.tick{animation:tick .28s ease-out}
+@keyframes tick{0%{transform:scale(1)}40%{transform:scale(1.12);color:var(--green-dark)}100%{transform:scale(1)}}
+.responds{display:inline-flex;align-items:center;gap:5px;color:var(--ink-soft)}
+.responds svg{color:var(--blue)}
+.assist{margin-top:10px;background:#eaf3fa;border:1px solid #c5dcec;border-radius:10px;padding:9px 12px;font-size:13px}
+.assist a{color:var(--blue);font-weight:600}
+.skel-card{display:grid;grid-template-columns:300px 1fr;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;min-height:210px}
+.skel{background:linear-gradient(90deg,#eef3f7 25%,#f7fafc 50%,#eef3f7 75%);background-size:200% 100%;animation:shimmer 1.2s infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+.skel-body{padding:20px 24px;display:grid;gap:12px;align-content:start}
+.skel-line{height:14px;border-radius:6px}
+.skel-line.w60{width:60%}.skel-line.w40{width:40%}.skel-line.w80{width:80%}
+.skel-chiprow{display:flex;gap:8px;margin-top:auto}
+.skel-chip{width:74px;height:32px;border-radius:10px}
+.empty{background:#fff;border:1px solid var(--line);border-radius:14px;padding:48px 28px;text-align:center;position:relative;overflow:hidden}
+.empty-lines{position:absolute;inset:0;opacity:.5;pointer-events:none}
+.empty-inner{position:relative}
+.empty h2{font-family:var(--display);font-weight:700;font-size:26px;text-transform:uppercase}
+.empty p{color:var(--ink-soft);font-size:15px;max-width:44ch;margin:8px auto 0}
+.empty-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.modal-left{position:relative}
+.modal-left > *{position:relative}
+.left-lines{position:absolute;right:-10px;bottom:-6px;width:200px;height:150px;opacity:.5;pointer-events:none}
+@media (max-width:920px){
+  .modal-grid{grid-template-columns:1fr}
+  .modal-left{border-right:0;border-bottom:1px solid var(--line)}
+  .summary{margin:4px -28px -24px;border-radius:0 0 20px 20px}
+  .nav-links{display:none}
+}
+@media (max-width:680px){
+  .wrap{padding:0 16px}
+  .nav{height:58px;gap:12px}
+  .nav-right .quiet{display:none}
+  .search-strip{top:58px;padding:10px 0}
+  .strip-search{flex-direction:column;border-radius:20px;padding:8px}
+  .strip-search .field{border-right:0;border-bottom:1px solid var(--line);padding:9px 12px}
+  .strip-search .field:last-of-type{border-bottom:0}
+  .strip-btn{width:100%;justify-content:center;margin-top:6px}
+  .strip-pills{width:100%;justify-content:flex-start;flex-wrap:wrap}
+  .rcard{grid-template-columns:1fr}
+  .rcard-media{min-height:190px;aspect-ratio:16/9}
+  .rcard-body{padding:16px 18px}
+  .rcard-top{flex-direction:column;gap:6px}
+  .price{text-align:left}
+  .price span{display:inline;margin-left:4px}
+  .time-grid{grid-template-columns:repeat(3,1fr)}
+  .inline-fields{flex-direction:column}
+  .modal-head{padding:18px 20px 14px}
+  .modal-left,.modal-right{padding:18px 20px}
+  .summary{margin:4px -20px -18px;padding:16px 20px 20px}
+  .overlay{padding:0}
+  .modal{border-radius:0;min-height:100vh}
+  .date-row{overflow-x:auto;padding-bottom:4px}
+  .date-pill{min-width:44px}
+}
+@media (prefers-reduced-motion:reduce){.rcard,.rcard:hover,.btn,.slot,.tslot,.date-pill{transition:none;transform:none}.overlay[data-open="true"] .modal,.date-row.slide,.sum-total b.tick,.skel{animation:none}}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html" aria-label="PracticePlan home">
+      <img src="https://res.cloudinary.com/dpj2i1xui/image/upload/v1771271476/Asset_1Platform-Logo-PP-2026_e2yewj.svg" alt="PracticePlan">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="search.html" class="active">Explore</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#owners">For facility owners</a>
+    </nav>
+    <div class="nav-spacer"></div>
+    <div class="nav-right">
+      <a class="quiet" href="#">Help</a>
+      <a class="quiet" href="#">Sign in</a>
+      <span class="nav-div" aria-hidden="true"></span>
+      <a class="btn btn-green" href="index.html#search">Find a space</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= SEARCH STRIP ================= -->
+<div class="search-strip">
+  <div class="wrap strip-inner">
+    <div class="strip-search">
+      <div class="field">
+        <label for="s-loc">Where</label>
+        <input id="s-loc" type="text" value="Prince Edward County, VA">
+      </div>
+      <div class="field">
+        <label for="s-act">Activity</label>
+        <select id="s-act">
+          <option selected>Softball</option><option>Baseball</option><option>Basketball</option><option>Football</option><option>Soccer</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="s-when">When</label>
+        <input id="s-when" type="date" value="2026-07-13">
+      </div>
+      <button class="strip-btn" type="button" onclick="runSearch()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+        Search
+      </button>
+    </div>
+    <div class="strip-pills">
+      <label class="mini-pill" id="sp-dur">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span>Duration: <b id="sp-dur-val">Any</b></span>
+        <select onchange="stripFilter('dur', this.value)"><option value="Any">Any</option><option>1 hr</option><option>2 hrs</option><option>3 hrs</option><option>Half day</option></select>
+      </label>
+      <label class="mini-pill" id="sp-ppl">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <span>People: <b id="sp-ppl-val">Any</b></span>
+        <select onchange="stripFilter('ppl', this.value)"><option value="Any">Any</option><option>1–10</option><option>11–25</option><option>26–50</option><option>51–100</option><option>100+</option></select>
+      </label>
+      <button class="mini-pill" type="button" aria-label="All filters">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2" fill="#fff"/><circle cx="15" cy="12" r="2" fill="#fff"/><circle cx="7" cy="17" r="2" fill="#fff"/></svg>
+        Filters
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= RESULTS ================= -->
+<main class="wrap">
+  <div class="results-head">
+    <div>
+      <h1>1 match in Farmville, VA</h1>
+      <p class="results-sub">Softball · Sunday, Jul 13, 2026 · within 25 miles</p>
+    </div>
+    <div class="view-toggle" role="tablist" aria-label="View">
+      <button role="tab" aria-selected="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1.4" fill="currentColor"/><circle cx="4" cy="12" r="1.4" fill="currentColor"/><circle cx="4" cy="18" r="1.4" fill="currentColor"/></svg>
+        List
+      </button>
+      <button role="tab" aria-selected="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3-6 3z"/><line x1="9" y1="7" x2="9" y2="20"/><line x1="15" y1="4" x2="15" y2="17"/></svg>
+        Map
+      </button>
+    </div>
+  </div>
+
+  <div class="results">
+
+    <div id="skeletons" hidden>
+      <div class="skel-card"><div class="skel"></div><div class="skel-body"><div class="skel skel-line w60"></div><div class="skel skel-line w40"></div><div class="skel skel-line w80"></div><div class="skel-chiprow"><div class="skel skel-chip"></div><div class="skel skel-chip"></div><div class="skel skel-chip"></div><div class="skel skel-chip"></div></div></div></div>
+    </div>
+
+    <div class="empty" id="empty-state" hidden>
+      <svg class="empty-lines" viewBox="0 0 800 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g stroke="#dce9f2" stroke-width="2" fill="none"><line x1="-20" y1="260" x2="180" y2="40"/><line x1="80" y1="260" x2="280" y2="40"/><path d="M800 260 A 220 220 0 0 0 580 260"/><circle cx="700" cy="150" r="36"/></g></svg>
+      <div class="empty-inner">
+        <div style="font-size:38px">📯</div>
+        <h2>Nothing open here yet</h2>
+        <p>No facilities match that activity in this area right now — but nearby spaces open up all the time. Here's what usually works:</p>
+        <div class="empty-actions">
+          <button class="btn btn-ghost" onclick="resetSearch()">Widen radius to 50 mi</button>
+          <button class="btn btn-ghost" onclick="resetSearch()">Try next weekend</button>
+          <button class="btn btn-green">Notify me when one opens</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="results-content">
+
+    <!-- Exact match -->
+    <article class="rcard">
+      <div class="rcard-media">
+        <img src="https://res.cloudinary.com/dpj2i1xui/image/upload/v1779304308/ChatGPT_Image_May_20_2026_03_11_38_PM_oxvdec.png" alt="Softball Field at Prince Edward County Middle School">
+        <span class="rcard-badge">Approval required</span>
+      </div>
+      <div class="rcard-body">
+        <div class="rcard-top">
+          <div>
+            <h2>Softball Field (PECS)</h2>
+            <p class="school">Prince Edward County Middle School</p>
+            <p class="meta">Farmville, VA <span class="dot"></span> 4.8 mi away <span class="dot"></span> <span class="responds"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Usually responds within 2 hours</span> <span class="dot"></span> <span class="new-tag">New on PracticePlan</span></p>
+          </div>
+          <div class="price"><b>$50</b><span>per hour</span></div>
+        </div>
+        <div class="avail">
+          <p class="avail-label">Available today</p>
+          <div class="slots">
+            <button class="slot" onclick="openModal('5:00 PM')">5:00 PM</button>
+            <button class="slot" onclick="openModal('5:30 PM')">5:30 PM</button>
+            <button class="slot" onclick="openModal('6:00 PM')">6:00 PM</button>
+            <button class="slot" onclick="openModal('6:30 PM')">6:30 PM</button>
+            <button class="slot" onclick="openModal('7:00 PM')">7:00 PM</button>
+            <button class="slot slot-more" onclick="openModal(null)">+ 3 more</button>
+          </div>
+        </div>
+        <div class="rcard-actions">
+          <button class="btn btn-green" onclick="openModal(null)">Book this field</button>
+          <button class="btn btn-ghost" onclick="openModal(null)">View details</button>
+        </div>
+      </div>
+    </article>
+
+    <div class="tip">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><circle cx="12" cy="16.5" r=".5" fill="currentColor"/></svg>
+      <span>Only one exact match — try <a href="#">widening your search radius</a> or <a href="#">checking nearby dates</a> for more options.</span>
+    </div>
+
+    <!-- Alternatives -->
+    <div class="alt-head">
+      <h2>More spaces at this school</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="alt-note">These don't match your activity filter, but they're available on your date.</p>
+
+    <article class="rcard alt">
+      <div class="rcard-media">
+        <img src="https://res.cloudinary.com/dpj2i1xui/image/upload/v1779304557/ChatGPT_Image_May_20_2026_03_15_19_PM_varsbo.png" alt="Competition Gymnasium at Prince Edward County Middle School">
+        <span class="rcard-badge">Indoor gym</span>
+      </div>
+      <div class="rcard-body">
+        <div class="rcard-top">
+          <div>
+            <h2>Competition Gymnasium (PECS)</h2>
+            <p class="school">Prince Edward County Middle School</p>
+            <p class="meta">Farmville, VA <span class="dot"></span> 4.8 mi away <span class="dot"></span> <span class="new-tag">New on PracticePlan</span></p>
+          </div>
+          <div class="price"><b>$100</b><span>per hour</span></div>
+        </div>
+        <div class="rcard-actions" style="margin-top:auto;padding-top:14px">
+          <button class="btn btn-ghost">Check availability</button>
+        </div>
+      </div>
+    </article>
+
+    </div><!-- /results-content -->
+
+  </div>
+</main>
+
+<!-- ================= BOOKING MODAL ================= -->
+<div class="overlay" id="overlay" data-open="false" onclick="if(event.target===this)closeModal()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <div class="modal-head">
+      <div>
+        <h2 id="m-title">Softball Field (PECS)</h2>
+        <p class="sub">at <a href="#">Prince Edward County Middle School</a> · Farmville, VA</p>
+        <span class="approval">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Approval required — facility confirms within 24 hrs
+        </span>
+      </div>
+      <button class="close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+
+    <div class="modal-grid">
+      <!-- LEFT: facility info -->
+      <div class="modal-left">
+        <div class="photo">
+          <img src="https://res.cloudinary.com/dpj2i1xui/image/upload/v1779304308/ChatGPT_Image_May_20_2026_03_11_38_PM_oxvdec.png" alt="Softball field aerial view">
+        </div>
+
+        <div class="facts">
+          <div class="fact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+            <span><b>20,000 sq ft</b> — standard middle school softball field</span>
+          </div>
+          <div class="fact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+            <span>Up to <b>150 people</b></span>
+          </div>
+          <div class="fact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Dirt infield · grass outfield · field lines · bleachers · parking · accessible restrooms</span>
+          </div>
+        </div>
+
+        <div class="good-for">
+          <h4>Good for</h4>
+          <div class="gf-chips">
+            <span class="gf-chip">🥎 Softball</span>
+            <span class="gf-chip">💪 Throwing</span>
+            <span class="gf-chip">🎓 Lessons</span>
+          </div>
+        </div>
+
+        <svg class="left-lines" viewBox="0 0 200 150" aria-hidden="true"><g stroke="#c3d9ea" stroke-width="1.5" fill="none"><line x1="20" y1="150" x2="90" y2="10"/><line x1="60" y1="150" x2="130" y2="10"/><line x1="100" y1="150" x2="170" y2="10"/><path d="M200 150 A 70 70 0 0 0 130 150"/></g></svg>
+        <details class="policies">
+          <summary>Rental policies</summary>
+          <ul>
+            <li>Liability insurance required for all bookings</li>
+            <li>Free cancellation up to 5 days before your reservation</li>
+            <li>Some amenities available for an additional fee</li>
+            <li><a href="#" style="color:var(--blue);font-weight:600">View full open hours & availability</a></li>
+          </ul>
+          <p class="assist">🛡️ Need liability coverage? <a href="#">Get a one-day certificate from ~$15 →</a></p>
+        </details>
+      </div>
+
+      <!-- RIGHT: stepped booking flow -->
+      <div class="modal-right">
+
+        <div class="bstep">
+          <div class="bstep-label"><span class="bstep-num">1</span><h3>Pick a date</h3></div>
+          <div class="date-nav">
+            <span class="dnav-month" id="dnav-month">July 2026</span>
+            <button type="button" class="dnav-btn" id="wk-prev" onclick="shiftWeek(-1)" aria-label="Previous week">&#8249;</button>
+            <button type="button" class="dnav-btn" onclick="shiftWeek(1)" aria-label="Next week">&#8250;</button>
+            <button type="button" class="dnav-cal" id="cal-toggle" onclick="toggleCal()" aria-expanded="false">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>
+              Calendar
+            </button>
+          </div>
+          <div class="date-row" id="dates"></div>
+          <div class="cal" id="cal" hidden>
+            <div class="cal-head">
+              <button type="button" class="dnav-btn" onclick="shiftMonth(-1)" aria-label="Previous month">&#8249;</button>
+              <b id="cal-month">July 2026</b>
+              <button type="button" class="dnav-btn" onclick="shiftMonth(1)" aria-label="Next month">&#8250;</button>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </div>
+          <div class="inline-fields">
+            <div class="ifield">
+              <label for="b-dur">How long</label>
+              <select id="b-dur" onchange="setDuration(this.value)">
+                <option value="1">30 minutes</option>
+                <option value="2" selected>1 hour</option>
+                <option value="3">1.5 hours</option>
+                <option value="4">2 hours</option>
+                <option value="6">3 hours</option>
+              </select>
+            </div>
+            <div class="ifield">
+              <label for="b-ppl">How many people</label>
+              <input id="b-ppl" type="number" min="1" max="150" placeholder="e.g. 25">
+            </div>
+          </div>
+        </div>
+
+        <div class="bstep">
+          <div class="bstep-label"><span class="bstep-num">2</span><h3>Choose a start time</h3></div>
+          <div class="time-grid" id="times">
+            <button class="tslot" onclick="pickTime(this)">5:00 PM</button>
+            <button class="tslot" onclick="pickTime(this)">5:30 PM</button>
+            <button class="tslot" onclick="pickTime(this)">6:00 PM</button>
+            <button class="tslot" onclick="pickTime(this)">6:30 PM</button>
+            <button class="tslot" onclick="pickTime(this)">7:00 PM</button>
+            <button class="tslot" onclick="pickTime(this)">7:30 PM</button>
+            <button class="tslot" onclick="pickTime(this)">8:00 PM</button>
+            <button class="tslot" onclick="pickTime(this)">8:30 PM</button>
+          </div>
+          <p class="time-hint">$25 per 30 minutes · all times local</p>
+        </div>
+
+        <div class="bstep">
+          <div class="bstep-label"><span class="bstep-num">3</span><h3>Booking details</h3></div>
+          <div class="detail-grid">
+            <div class="ifield">
+              <label for="b-type">Booking type</label>
+              <select id="b-type"><option value="">Select…</option><option>Practice</option><option>Game / scrimmage</option><option>Camp or clinic</option><option>Lesson</option><option>Other</option></select>
+            </div>
+            <div class="ifield">
+              <label for="b-part">Participant type</label>
+              <select id="b-part"><option value="">Select…</option><option>Youth team</option><option>School team</option><option>Adult league</option><option>Private group</option></select>
+            </div>
+            <div class="ifield full">
+              <label for="b-spec">Expected spectators <span style="font-weight:500;color:var(--ink-soft);text-transform:none;letter-spacing:0">(optional)</span></label>
+              <input id="b-spec" type="number" min="0" placeholder="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="summary">
+          <div class="sum-row">
+            <div class="sum-info">
+              <b id="sum-line">Select a time to continue</b>
+              <span id="sum-detail">Mon, Jul 13 · 1 hour</span>
+            </div>
+            <div class="sum-total">
+              <b id="sum-price">—</b>
+              <span>estimated total</span>
+            </div>
+          </div>
+          <button class="book-btn" id="book-btn" disabled>Log in to request booking</button>
+          <p class="book-note">You won't be charged until the facility approves your request.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var TODAY = new Date(2026, 6, 13); // mock "today" for the demo
+var state = { selDate: new Date(2026, 6, 13), time: null, durSlots: 2 };
+var weekStart = new Date(TODAY);
+var calMonth = { y: 2026, m: 6 };
+var DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var MON = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function fmtShort(d){ return DOW[d.getDay()] + ", " + MON[d.getMonth()].slice(0,3) + " " + d.getDate(); }
+function sameDay(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+function beforeToday(d){ var t=new Date(TODAY); t.setHours(0,0,0,0); var x=new Date(d); x.setHours(0,0,0,0); return x<t; }
+
+function renderWeek(){
+  var row = document.getElementById("dates");
+  row.innerHTML = "";
+  var last = null;
+  for (var i=0;i<7;i++){
+    var d = new Date(weekStart); d.setDate(weekStart.getDate()+i); last = d;
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "date-pill";
+    b.innerHTML = "<small>"+DOW[d.getDay()]+"</small><b>"+d.getDate()+"</b>";
+    if (beforeToday(d)) b.disabled = true;
+    if (sameDay(d, state.selDate)) b.setAttribute("data-selected","true");
+    (function(dd){ b.onclick = function(){ selectDate(dd); }; })(new Date(d));
+    row.appendChild(b);
+  }
+  var lbl = MON[weekStart.getMonth()];
+  if (last.getMonth() !== weekStart.getMonth()) lbl = MON[weekStart.getMonth()].slice(0,3) + " \u2013 " + MON[last.getMonth()].slice(0,3);
+  document.getElementById("dnav-month").textContent = lbl + " " + last.getFullYear();
+  document.getElementById("wk-prev").disabled = beforeToday(new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate()-1));
+}
+function shiftWeek(dir){
+  var w = new Date(weekStart); w.setDate(w.getDate() + 7*dir);
+  if (dir < 0){ var t = new Date(TODAY); if (w < t) w = new Date(t); }
+  weekStart = w; renderWeek();
+  var row = document.getElementById("dates");
+  row.classList.remove("slide"); void row.offsetWidth; row.classList.add("slide");
+}
+function selectDate(d){
+  state.selDate = new Date(d);
+  weekStart = new Date(d);
+  renderWeek();
+  if (!document.getElementById("cal").hidden){ calMonth = { y: d.getFullYear(), m: d.getMonth() }; renderCal(); }
+  updateSummary();
+}
+function toggleCal(){
+  var cal = document.getElementById("cal");
+  var btn = document.getElementById("cal-toggle");
+  cal.hidden = !cal.hidden;
+  btn.setAttribute("aria-expanded", String(!cal.hidden));
+  if (!cal.hidden){ calMonth = { y: state.selDate.getFullYear(), m: state.selDate.getMonth() }; renderCal(); }
+}
+function shiftMonth(dir){
+  calMonth.m += dir;
+  if (calMonth.m < 0){ calMonth.m = 11; calMonth.y--; }
+  if (calMonth.m > 11){ calMonth.m = 0; calMonth.y++; }
+  renderCal();
+}
+function renderCal(){
+  document.getElementById("cal-month").textContent = MON[calMonth.m] + " " + calMonth.y;
+  var grid = document.getElementById("cal-grid");
+  grid.innerHTML = "";
+  ["S","M","T","W","T","F","S"].forEach(function(dw){
+    var s = document.createElement("span"); s.className = "cal-dow"; s.textContent = dw; grid.appendChild(s);
+  });
+  var first = new Date(calMonth.y, calMonth.m, 1);
+  var days = new Date(calMonth.y, calMonth.m+1, 0).getDate();
+  for (var p=0; p<first.getDay(); p++){
+    var pad = document.createElement("button"); pad.className = "cal-day pad"; pad.disabled = true; grid.appendChild(pad);
+  }
+  for (var day=1; day<=days; day++){
+    var d = new Date(calMonth.y, calMonth.m, day);
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "cal-day"; b.textContent = day;
+    if (beforeToday(d)) b.disabled = true;
+    if (sameDay(d, TODAY)) b.setAttribute("data-today","true");
+    if (sameDay(d, state.selDate)) b.setAttribute("data-selected","true");
+    (function(dd){ b.onclick = function(){ selectDate(dd); }; })(d);
+    grid.appendChild(b);
+  }
+}
+
+function openModal(preTime){
+  document.getElementById("overlay").setAttribute("data-open","true");
+  document.body.style.overflow = "hidden";
+  if (preTime){
+    document.querySelectorAll("#times .tslot").forEach(function(t){
+      if (t.textContent.trim() === preTime) pickTime(t);
+    });
+  }
+}
+function closeModal(){
+  document.getElementById("overlay").setAttribute("data-open","false");
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeModal(); });
+
+function pickTime(el){
+  document.querySelectorAll("#times .tslot").forEach(function(t){ t.removeAttribute("data-selected"); });
+  el.setAttribute("data-selected","true");
+  state.time = el.textContent.trim();
+  updateSummary();
+}
+function setDuration(v){
+  state.durSlots = parseInt(v,10);
+  updateSummary();
+}
+function endTime(start, slots){
+  // start like "5:00 PM"
+  var m = start.match(/(\d+):(\d+) (\w+)/);
+  var h = parseInt(m[1],10), min = parseInt(m[2],10), ap = m[3];
+  if (ap === "PM" && h !== 12) h += 12;
+  var total = h*60 + min + slots*30;
+  var eh = Math.floor(total/60)%24, em = total%60;
+  var eap = eh >= 12 ? "PM" : "AM";
+  var dh = eh % 12; if (dh === 0) dh = 12;
+  return dh + ":" + (em<10?"0":"") + em + " " + eap;
+}
+function durLabel(slots){
+  var map = {1:"30 minutes",2:"1 hour",3:"1.5 hours",4:"2 hours",6:"3 hours"};
+  return map[slots] || (slots*30 + " min");
+}
+function updateSummary(){
+  var line = document.getElementById("sum-line");
+  var detail = document.getElementById("sum-detail");
+  var price = document.getElementById("sum-price");
+  var btn = document.getElementById("book-btn");
+  detail.textContent = fmtShort(state.selDate) + " · " + durLabel(state.durSlots);
+  if (state.time){
+    line.textContent = state.time + " – " + endTime(state.time, state.durSlots);
+    var newPrice = "$" + (state.durSlots * 25);
+    if (price.textContent !== newPrice){
+      price.textContent = newPrice;
+      price.classList.remove("tick"); void price.offsetWidth; price.classList.add("tick");
+    }
+    btn.disabled = false;
+  } else {
+    line.textContent = "Select a time to continue";
+    price.textContent = "—";
+    btn.disabled = true;
+  }
+}
+
+renderWeek();
+function runSearch(){
+  var skel = document.getElementById("skeletons");
+  var content = document.getElementById("results-content");
+  var empty = document.getElementById("empty-state");
+  empty.hidden = true; content.hidden = true; skel.hidden = false;
+  setTimeout(function(){
+    skel.hidden = true;
+    var act = document.getElementById("s-act").value;
+    if (act === "Softball"){ content.hidden = false; }
+    else { empty.hidden = false; }
+  }, 700);
+}
+function resetSearch(){
+  document.getElementById("s-act").value = "Softball";
+  runSearch();
+}
+function stripFilter(which, value){
+  var pill = document.getElementById("sp-" + which);
+  document.getElementById("sp-" + which + "-val").textContent = value;
+  if (value !== "Any") pill.classList.add("has-value"); else pill.classList.remove("has-value");
+}
+</script>
+</body>
+</html>
