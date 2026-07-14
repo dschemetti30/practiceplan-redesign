@@ -39,8 +39,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdro
 .nav{display:flex;align-items:center;gap:28px;height:68px}
 .logo{display:flex;align-items:center}
 .logo .logo-full{height:30px;width:auto}
-.logo .logo-mark{display:none;height:32px;width:auto}
-@media (max-width:520px){.logo .logo-full{display:none}.logo .logo-mark{display:block}}
+.logo .logo-mark{display:none}
+@media (max-width:520px){.logo .logo-full{height:25px}}
 .nav-links{display:flex;gap:8px;margin-left:20px;font-weight:600;font-size:15px}
 .nav-links a{padding:9px 16px;border-radius:999px;color:var(--ink-soft);transition:background .15s,color .15s}
 .nav-links a:hover{background:var(--mist);color:var(--blue-dark)}
@@ -197,7 +197,7 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--mist)}
   .sec-head{margin-bottom:26px}
 }
 @media (max-width:640px){
-  .wrap{padding-left:max(22px, env(safe-area-inset-left));padding-right:max(22px, env(safe-area-inset-right))}
+  .wrap{padding-left:max(32px, env(safe-area-inset-left));padding-right:max(32px, env(safe-area-inset-right))}
   section{padding:44px 0}
   .cards{grid-template-columns:1fr;gap:18px}
   /* Hero — tighter, still airy */
