@@ -304,6 +304,40 @@ footer{border-top:1px solid var(--line);padding:36px 0;background:var(--mist);ma
     .wrap{padding-left:max(30px, env(safe-area-inset-left));padding-right:max(30px, env(safe-area-inset-right))}
   }
 }
+/* ---------- Map view (split: cards + map) ---------- */
+.map-view{padding:18px 0 60px}
+.map-split{display:grid;grid-template-columns:340px 1fr;gap:18px;align-items:start}
+.map-cards{display:grid;gap:12px;max-height:calc(100vh - 240px);overflow-y:auto;padding:2px}
+.mcard{display:flex;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:10px;cursor:pointer;transition:border-color .15s,box-shadow .15s;text-align:left}
+.mcard:hover{border-color:var(--blue)}
+.mcard.active{border-color:var(--navy);box-shadow:var(--shadow)}
+.mcard img{width:92px;height:80px;object-fit:cover;border-radius:10px;flex:none}
+.mcard-body{flex:1;min-width:0;display:flex;flex-direction:column}
+.mcard-body b{font-size:14.5px;font-weight:700;line-height:1.25;display:block}
+.mcard-body small{font-size:12.5px;color:var(--ink-soft);margin-top:2px;display:block}
+.mcard-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:6px}
+.mcard-price{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+.mcard-price span{font-weight:500;color:var(--ink-soft);font-size:12px}
+.mcard-book{border:0;background:var(--green);color:#fff;border-radius:999px;font-size:12.5px;font-weight:700;padding:6px 14px;transition:background .15s}
+.mcard-book:hover{background:var(--green-dark)}
+.map-canvas{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;height:calc(100vh - 240px);min-height:420px;background:#eef4f8}
+.map-zoom-wrap{position:absolute;inset:0;transition:transform .25s ease;transform-origin:50% 50%}
+.map-svg{position:absolute;inset:0;width:100%;height:100%}
+.map-marker{position:absolute;transform:translate(-50%,-100%);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:0 3px 10px rgba(14,34,51,.14);cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s;white-space:nowrap}
+.map-marker::after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:6px solid transparent;border-top-color:#fff;border-bottom:0}
+.map-marker:hover{transform:translate(-50%,-100%) scale(1.08)}
+.map-marker.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.map-marker.active::after{border-top-color:var(--navy)}
+.map-ctl{position:absolute;right:14px;bottom:14px;display:flex;flex-direction:column;gap:6px}
+.map-ctl button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:18px;font-weight:600;color:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(14,34,51,.10);transition:border-color .15s,color .15s}
+.map-ctl button:hover{border-color:var(--blue);color:var(--blue)}
+.map-note{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;font-size:11.5px;font-weight:600;color:var(--ink-soft);padding:4px 12px}
+@media (max-width:900px){
+  .map-split{grid-template-columns:1fr}
+  .map-canvas{height:52vh;min-height:340px;order:-1}
+  .map-cards{max-height:none;grid-auto-flow:column;grid-auto-columns:280px;overflow-x:auto;overflow-y:hidden;padding-bottom:6px;scrollbar-width:none}
+  .map-cards::-webkit-scrollbar{display:none}
+}
 /* ---------- Get Started / Sign up modal ---------- */
 .su-overlay{position:fixed;inset:0;background:rgba(14,34,51,.55);z-index:300;display:none;align-items:center;justify-content:center;padding:24px;overflow-y:auto}
 .su-overlay[data-open="true"]{display:flex}
@@ -423,11 +457,11 @@ footer{border-top:1px solid var(--line);padding:36px 0;background:var(--mist);ma
       <p class="results-sub">Softball · Sunday, Jul 13, 2026 · within 25 miles</p>
     </div>
     <div class="view-toggle" role="tablist" aria-label="View">
-      <button role="tab" aria-selected="true">
+      <button role="tab" aria-selected="true" id="vt-list" onclick="setView('list')">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1.4" fill="currentColor"/><circle cx="4" cy="12" r="1.4" fill="currentColor"/><circle cx="4" cy="18" r="1.4" fill="currentColor"/></svg>
         List
       </button>
-      <button role="tab" aria-selected="false">
+      <button role="tab" aria-selected="false" id="vt-map" onclick="setView('map')">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3-6 3z"/><line x1="9" y1="7" x2="9" y2="20"/><line x1="15" y1="4" x2="15" y2="17"/></svg>
         Map
       </button>
@@ -525,6 +559,83 @@ footer{border-top:1px solid var(--line);padding:36px 0;background:var(--mist);ma
 
   </div>
 </main>
+
+
+<!-- ================= MAP VIEW ================= -->
+<div class="wrap map-view" id="map-view" hidden>
+  <div class="map-split">
+    <div class="map-cards">
+      <button class="mcard active" id="mc-0" onclick="selectSpot(0)">
+        <img src="https://res.cloudinary.com/dpj2i1xui/image/upload/v1779304308/ChatGPT_Image_May_20_2026_03_11_38_PM_oxvdec.png" alt="">
+        <span class="mcard-body">
+          <b>Softball Field (PECS)</b>
+          <small>Prince Edward County MS · 4.8 mi</small>
+          <span class="mcard-foot">
+            <span class="mcard-price">$50 <span>/ hr</span></span>
+            <span class="mcard-book" onclick="event.stopPropagation();openModal(null)">Book</span>
+          </span>
+        </span>
+      </button>
+      <button class="mcard" id="mc-1" onclick="selectSpot(1)">
+        <img src="https://res.cloudinary.com/dpj2i1xui/image/upload/v1779304557/ChatGPT_Image_May_20_2026_03_15_19_PM_varsbo.png" alt="">
+        <span class="mcard-body">
+          <b>Competition Gymnasium (PECS)</b>
+          <small>Prince Edward County MS · 4.8 mi</small>
+          <span class="mcard-foot">
+            <span class="mcard-price">$100 <span>/ hr</span></span>
+            <span class="mcard-book" onclick="event.stopPropagation();openModal(null)">Book</span>
+          </span>
+        </span>
+      </button>
+    </div>
+
+    <div class="map-canvas">
+      <div class="map-zoom-wrap" id="map-zoom">
+        <svg class="map-svg" viewBox="0 0 900 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="900" height="640" fill="#eef4f8"/>
+          <path d="M0 420 Q180 380 320 430 T640 400 T900 440 L900 640 L0 640 Z" fill="#e3f0e7"/>
+          <path d="M520 0 Q560 120 500 220 T560 420" stroke="#d7e8f4" stroke-width="26" fill="none" stroke-linecap="round"/>
+          <ellipse cx="150" cy="120" rx="130" ry="80" fill="#e3f0e7"/>
+          <ellipse cx="790" cy="180" rx="120" ry="90" fill="#e8f2ea"/>
+          <g stroke="#d9e4ec" stroke-width="18" fill="none" stroke-linecap="round">
+            <path d="M-20 520 L920 300"/>
+            <path d="M200 660 L420 -20"/>
+            <path d="M-20 180 Q300 220 620 150 T920 190"/>
+          </g>
+          <g stroke="#ffffff" stroke-width="12" fill="none" stroke-linecap="round">
+            <path d="M-20 520 L920 300"/>
+            <path d="M200 660 L420 -20"/>
+            <path d="M-20 180 Q300 220 620 150 T920 190"/>
+          </g>
+          <g stroke="#ffffff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".9">
+            <path d="M340 180 L560 470"/>
+            <path d="M120 360 L500 320"/>
+            <path d="M620 520 L780 360"/>
+          </g>
+          <g fill="#dbe4ea">
+            <rect x="360" y="250" width="70" height="44" rx="4" transform="rotate(-12 395 272)"/>
+            <rect x="450" y="300" width="46" height="34" rx="4" transform="rotate(-12 473 317)"/>
+            <rect x="640" y="410" width="60" height="40" rx="4" transform="rotate(8 670 430)"/>
+            <rect x="180" y="430" width="52" height="36" rx="4"/>
+            <rect x="700" y="240" width="48" height="32" rx="4" transform="rotate(-6 724 256)"/>
+          </g>
+          <g fill="#9fb5c4" font-family="Barlow,Arial" font-size="15" font-weight="600">
+            <text x="70" y="212" transform="rotate(4 70 212)">Highland Rd</text>
+            <text x="690" y="330" transform="rotate(-13 690 330)">Zion Hill Rd</text>
+            <text x="330" y="600">Farmville</text>
+          </g>
+        </svg>
+        <button class="map-marker active" id="mk-0" style="left:47%;top:44%" onclick="selectSpot(0)">$50/hr</button>
+        <button class="map-marker" id="mk-1" style="left:69%;top:66%" onclick="selectSpot(1)">$100/hr</button>
+      </div>
+      <span class="map-note">Illustrative map — production uses live map data</span>
+      <div class="map-ctl">
+        <button type="button" onclick="zoomMap(1)" aria-label="Zoom in">+</button>
+        <button type="button" onclick="zoomMap(-1)" aria-label="Zoom out">−</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="wrap foot">
@@ -891,6 +1002,7 @@ function updateStripSummary(){
   document.getElementById("ss-text").innerHTML = "<b>"+loc+"</b><small>"+act+(whenTxt?" \u00b7 "+whenTxt:"")+"</small>";
 }
 function runSearch(){
+  setView("list");
   if (window.innerWidth <= 680){
     document.querySelector(".search-strip").classList.remove("open");
     document.getElementById("strip-summary").setAttribute("aria-expanded","false");
@@ -917,6 +1029,34 @@ function stripFilter(which, value){
   if (value !== "Any") pill.classList.add("has-value"); else pill.classList.remove("has-value");
 }
 
+
+// List / Map view switching
+function setView(which){
+  var isMap = which === "map";
+  document.getElementById("vt-list").setAttribute("aria-selected", String(!isMap));
+  document.getElementById("vt-map").setAttribute("aria-selected", String(isMap));
+  document.getElementById("map-view").hidden = !isMap;
+  var content = document.getElementById("results-content");
+  var empty = document.getElementById("empty-state");
+  if (isMap){ content.hidden = true; empty.hidden = true; }
+  else { content.hidden = false; }
+}
+// Marker <-> card sync
+function selectSpot(i){
+  [0,1].forEach(function(n){
+    var on = n === i;
+    document.getElementById("mk-"+n).classList.toggle("active", on);
+    document.getElementById("mc-"+n).classList.toggle("active", on);
+  });
+  var card = document.getElementById("mc-"+i);
+  if (card.scrollIntoView) card.scrollIntoView({block:"nearest", inline:"nearest", behavior:"smooth"});
+}
+// Simple zoom on the illustrative map
+var mapScale = 1;
+function zoomMap(dir){
+  mapScale = Math.min(1.6, Math.max(0.8, mapScale + dir * 0.2));
+  document.getElementById("map-zoom").style.transform = "scale(" + mapScale + ")";
+}
 // Get Started modal
 function openSignup(){
   document.getElementById("su-overlay").setAttribute("data-open","true");
