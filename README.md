@@ -6,6 +6,7 @@ homepage, search results, and the booking modal.
 ## Pages
 - `index.html` — Homepage (search-first hero, activity browse, how-it-works, facility-owner section)
 - `search.html` — Search results + booking modal (week/calendar date picker, live price, skeleton & empty states)
+- `facility.html` — Facility detail page (gallery, sticky booking card, spaces list with add-on pricing)
 
 ## Design system
 - **Fonts:** Barlow + Barlow Condensed (Google Fonts)
