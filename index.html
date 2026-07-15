@@ -197,7 +197,7 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--mist)}
   .sec-head{margin-bottom:26px}
 }
 @media (max-width:640px){
-  .wrap{padding-left:max(32px, env(safe-area-inset-left));padding-right:max(32px, env(safe-area-inset-right))}
+  .wrap{padding:0 32px}
   section{padding:44px 0}
   .cards{grid-template-columns:1fr;gap:18px}
   /* Hero — tighter, still airy */
@@ -259,6 +259,12 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--mist)}
 @keyframes floatIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (max-width:1100px){.live-card{display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.card:hover,.btn,.search-btn,.chip{transition:none;transform:none}h1 .verb{animation:none!important}.live-card,.live-card .pulse{animation:none}}
+/* Progressive enhancement: respect notch/curved-edge safe areas where supported */
+@supports (padding: max(0px)){
+  @media (max-width:640px){
+    .wrap{padding-left:max(32px, env(safe-area-inset-left));padding-right:max(32px, env(safe-area-inset-right))}
+  }
+}
 </style>
 </head>
 <body>

@@ -249,7 +249,7 @@ footer{border-top:1px solid var(--line);padding:36px 0;background:var(--mist);ma
   .nav-links{display:none}
 }
 @media (max-width:680px){
-  .wrap{padding-left:max(30px, env(safe-area-inset-left));padding-right:max(30px, env(safe-area-inset-right))}
+  .wrap{padding:0 30px}
   .nav{height:58px;gap:12px}
   .nav-right .quiet{display:none}
   /* Collapsible search: summary pill by default, full form when .open */
@@ -297,6 +297,12 @@ footer{border-top:1px solid var(--line);padding:36px 0;background:var(--mist);ma
   .foot-links{flex-wrap:wrap;gap:14px 20px}
 }
 @media (prefers-reduced-motion:reduce){.rcard,.rcard:hover,.btn,.slot,.tslot,.date-pill{transition:none;transform:none}.overlay[data-open="true"] .modal,.date-row.slide,.sum-total b.tick,.skel{animation:none}}
+/* Progressive enhancement: respect notch/curved-edge safe areas where supported */
+@supports (padding: max(0px)){
+  @media (max-width:680px){
+    .wrap{padding-left:max(30px, env(safe-area-inset-left));padding-right:max(30px, env(safe-area-inset-right))}
+  }
+}
 </style>
 </head>
 <body>
