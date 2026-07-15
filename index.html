@@ -265,6 +265,45 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--mist)}
     .wrap{padding-left:max(32px, env(safe-area-inset-left));padding-right:max(32px, env(safe-area-inset-right))}
   }
 }
+/* ---------- Get Started / Sign up modal ---------- */
+.su-overlay{position:fixed;inset:0;background:rgba(14,34,51,.55);z-index:300;display:none;align-items:center;justify-content:center;padding:24px;overflow-y:auto}
+.su-overlay[data-open="true"]{display:flex}
+.su-modal{position:relative;background:#fff;border-radius:20px;max-width:520px;width:100%;padding:36px 36px 30px;box-shadow:0 30px 80px rgba(14,34,51,.35);overflow:hidden}
+.su-overlay[data-open="true"] .su-modal{animation:suIn .22s ease-out}
+@keyframes suIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.su-lines{position:absolute;top:-10px;right:-20px;width:190px;height:130px;opacity:.45;pointer-events:none}
+.su-close{position:absolute;top:16px;right:16px;border:0;background:var(--mist);width:36px;height:36px;border-radius:50%;font-size:16px;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;transition:background .15s}
+.su-close:hover{background:var(--line)}
+.su-head{text-align:center;margin-bottom:24px;position:relative}
+.su-head img{height:34px;width:auto;margin:0 auto 14px}
+.su-head h2{font-family:var(--display);font-weight:700;font-size:30px;text-transform:uppercase;line-height:1.05}
+.su-head p{font-size:15px;color:var(--ink-soft);margin-top:5px}
+.su-opts{display:grid;gap:12px}
+.su-opt{display:flex;align-items:center;gap:15px;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:17px 18px;transition:border-color .15s,background .15s,transform .12s ease-out}
+.su-opt:hover{border-color:var(--blue);background:#f6fafd;transform:translateY(-1px)}
+.su-opt:active{transform:scale(.98)}
+.su-ico{flex:none;width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff}
+.su-ico.blue{background:var(--blue)}
+.su-ico.green{background:var(--green)}
+.su-opt-text{flex:1;min-width:0}
+.su-opt-text b{display:block;font-size:15.5px;font-weight:700;line-height:1.3}
+.su-opt-text span{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:2px}
+.su-chev{flex:none;color:var(--ink-soft);transition:transform .15s,color .15s}
+.su-opt:hover .su-chev{transform:translateX(3px);color:var(--blue)}
+.su-div{display:flex;align-items:center;gap:14px;margin:22px 0 16px;color:var(--ink-soft);font-size:13px;font-weight:600}
+.su-div::before,.su-div::after{content:"";flex:1;height:1px;background:var(--line)}
+.su-signin{text-align:center;font-size:14.5px}
+.su-signin a{color:var(--blue);font-weight:700}
+.su-signin a:hover{text-decoration:underline}
+@media (max-width:680px){
+  .su-overlay{padding:28px 0 0;align-items:flex-end}
+  .su-modal{border-radius:20px 20px 0 0;max-width:none;min-height:auto;padding:34px 26px calc(28px + env(safe-area-inset-bottom))}
+  .su-modal::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:999px;background:var(--line)}
+}
+@media (prefers-reduced-motion:reduce){
+  .su-overlay[data-open="true"] .su-modal{animation:none}
+  .su-opt,.su-opt:hover,.su-chev{transition:none;transform:none}
+}
 </style>
 </head>
 <body>
@@ -284,7 +323,7 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--mist)}
     <div class="nav-spacer"></div>
     <div class="nav-right">
       <a class="quiet" href="#">Help</a>
-      <a class="quiet" href="#">Sign in</a>
+      <a class="quiet" href="#" onclick="openSignup();return false">Sign in</a>
       <span class="nav-div" aria-hidden="true"></span>
       <a class="btn btn-green" href="#search">Find a space</a>
     </div>
@@ -601,7 +640,7 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--mist)}
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a84f" stroke-width="3" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg> You set the schedule, pricing, and booking rules</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a84f" stroke-width="3" aria-hidden="true"><path d="M4 12.5 10 18 20 6"/></svg> Online payments and confirmations, handled for you</li>
         </ul>
-        <a class="btn btn-green" href="#">List your facility</a>
+        <a class="btn btn-green" href="#" onclick="openSignup();return false">List your facility</a>
       </div>
       <div class="owner-art" aria-hidden="true">
         <svg viewBox="0 0 400 300" fill="none">
@@ -670,6 +709,43 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--mist)}
   </div>
 </footer>
 
+
+<!-- ================= GET STARTED MODAL ================= -->
+<div class="su-overlay" id="su-overlay" data-open="false" onclick="if(event.target===this)closeSignup()">
+  <div class="su-modal" role="dialog" aria-modal="true" aria-labelledby="su-title">
+    <svg class="su-lines" viewBox="0 0 190 130" aria-hidden="true"><g stroke="#c3d9ea" stroke-width="1.5" fill="none"><line x1="40" y1="130" x2="110" y2="0"/><line x1="85" y1="130" x2="155" y2="0"/><path d="M190 130 A 70 70 0 0 0 120 130"/></g></svg>
+    <button class="su-close" onclick="closeSignup()" aria-label="Close">✕</button>
+    <div class="su-head">
+      <img src="https://res.cloudinary.com/dpj2i1xui/image/upload/v1771271476/Asset_1Platform-Logo-PP-2026_e2yewj.svg" alt="PracticePlan">
+      <h2 id="su-title">Let's get started</h2>
+      <p>Book a space or list your facility — it takes minutes.</p>
+    </div>
+    <div class="su-opts">
+      <a class="su-opt" href="search.html">
+        <span class="su-ico blue">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+        </span>
+        <span class="su-opt-text">
+          <b>I want to book a facility or space</b>
+          <span>Sign up as a renter to find and book spaces near you.</span>
+        </span>
+        <svg class="su-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+      <a class="su-opt" href="#owners">
+        <span class="su-ico green">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M15 10h.01M12 13h.01"/></svg>
+        </span>
+        <span class="su-opt-text">
+          <b>I want to rent out my facility or space</b>
+          <span>Sign up as a venue to save time, cut manual work, and earn more revenue.</span>
+        </span>
+        <svg class="su-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="su-div">or</div>
+    <p class="su-signin">Already have an account? <a href="#" onclick="return false">Sign in</a></p>
+  </div>
+</div>
 <script>
 // Rotating hero verb — pulled straight from the brand's Play / Practice / Meet
 (function(){
@@ -761,6 +837,22 @@ function setTab(which){
   document.getElementById("steps-guests").hidden = !guests;
   document.getElementById("steps-owners").hidden = guests;
 }
+
+// Get Started modal
+function openSignup(){
+  document.getElementById("su-overlay").setAttribute("data-open","true");
+  document.body.style.overflow = "hidden";
+}
+function closeSignup(){
+  document.getElementById("su-overlay").setAttribute("data-open","false");
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", function(e){
+  if (e.key === "Escape"){
+    var su = document.getElementById("su-overlay");
+    if (su && su.getAttribute("data-open") === "true") closeSignup();
+  }
+});
 </script>
 </body>
 </html>
